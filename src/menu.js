@@ -1,13 +1,13 @@
 let firebase = require('firebase')
 
 let firebaseConfig = {
-  apiKey: "AIzaSyA_x0yIBPXlM2UWS8G4tKrDMHQQ5Ikbt-U",
-  authDomain: "restaurant-api-js01lc.firebaseapp.com",
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
   databaseURL: "https://restaurant-api-js01lc.firebaseio.com",
-  projectId: "restaurant-api-js01lc",
-  storageBucket: "restaurant-api-js01lc.appspot.com",
-  messagingSenderId: "555462821163",
-  appId: "1:555462821163:web:a9aa7dc781332b63e4f16e"
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId
 }
 // Initialize Firebase
 let fb = firebase.initializeApp(firebaseConfig)
