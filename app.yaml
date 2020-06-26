@@ -1,0 +1,13 @@
+runtime: nodejs10
+env: standard
+# resources:
+#   cpu: 1
+#   memory_gb: 2
+#   disk_size_gb: 10
+env_variables:
+  apiKey: AIzaSyA_x0yIBPXlM2UWS8G4tKrDMHQQ5Ikbt-U
+  authDomain: restaurant-api-js01lc.firebaseapp.com
+  projectId: restaurant-api-js01lc
+  storageBucket: restaurant-api-js01lc.appspot.com
+  messagingSenderId: 555462821163
+  appId: 1:555462821163:web:a9aa7dc781332b63e4f16e

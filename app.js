@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const { getMenu, addToMenu, searchMenu } = require('./src/menu')
 // sets up our express server: calls it "app"
 const app = express()
-const port = 3005
+const port = process.env.PORT || 3005
 
 // use body-parser for our server:
 app.use(bodyParser.json())
