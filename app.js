@@ -12,7 +12,6 @@ const port = process.env.PORT || 3005
 app.use(bodyParser.json())
 
 // GET ROUTES
-// app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/menu', getMenu) // returns the whole menu
 app.get('/menu/:category', getMenu) // returns a menu section
 app.get('/menu/search/:query', searchMenu)
