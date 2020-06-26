@@ -18,9 +18,8 @@ exports.getMenu = (request, reply) => {
     .then(ourMenu => {
       if (request.params && request.params.category) {
         let { category } = request.params
-        if (ourMenu.hasOwnProperty(category)) {
-          let menuCategory = ourMenu[category] // use .filter
-          // let results = jobsArray.filter(job => job.city === 'Boca Raton')
+        if (ourMenu.child(category)) {
+          let menuCategory = Object.values(ourMenu.child(category).val())
           reply.status(200).send(menuCategory)
         } else {
           reply.status(401).send('Error: Menu category not found.')
@@ -28,23 +27,24 @@ exports.getMenu = (request, reply) => {
       }
       reply
         .status(200)
-        .send(ourMenu)
+        .send(Object.values(ourMenu.val()))
     })
 }
 
 exports.searchMenu = (request, reply) => {
   if (request.params && request.params.query) {
-    let { query } = request.params
-    if (ourMenu.hasOwnProperty(query.toLowerCase()) || ourMenu.hasOwnProperty(query.toLowerCase() + 's')) {
-      // if user enters appetizer(s), soup(s), or entree(s)
-      reply.status(200).send(ourMenu[query.toLowerCase()])
-    }
-    let results = []
-    Object.keys(ourMenu).forEach(cat => {
-      let catResults = ourMenu[cat].filter(menuItem => menuItem.name.toLowerCase().includes(query.toLowerCase()))
-      results = results.concat(catResults)
-    })
-    reply.status(200).send(results)
+    fbRef.once('value')
+      .then(ourMenu => {
+        let { query } = request.params
+        let results = []
+        let cats = Object.keys(ourMenu.val())
+        cats.forEach(cat => {
+          let thisCat = Object.values(ourMenu.child(cat).val())
+          let catResults = thisCat.filter(menuItem => menuItem.name.toLowerCase().includes(query.toLowerCase()))
+          results = results.concat(catResults)
+        })
+        reply.status(200).send(results)
+      })
   }
 }
 
