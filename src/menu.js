@@ -25,9 +25,16 @@ exports.getMenu = (request, reply) => {
           reply.status(401).send('Error: Menu category not found.')
         }
       }
+      let categories = Object.keys(ourMenu.val())
+      let menu = categories.map(cat => {
+        return {
+          category: cat,
+          items: Object.values(ourMenu.child(cat).val())
+        }
+      })
       reply
         .status(200)
-        .send(Object.values(ourMenu.val()))
+        .send(menu)
     })
 }
 

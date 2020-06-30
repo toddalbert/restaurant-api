@@ -1,5 +1,6 @@
 // import express server:
 const express = require('express')
+const cors = require('cors')
 // install body-parser library to handle data in post requests:
 const bodyParser = require('body-parser')
 // import our "menu" function:
@@ -10,6 +11,11 @@ const port = process.env.PORT || 3005
 
 // use body-parser for our server:
 app.use(bodyParser.json())
+
+// allow CORS and headers
+app.use(cors({
+  allowedHeaders: ['Content-Type']
+}))
 
 // GET ROUTES
 app.get('/plop', getMenu)
