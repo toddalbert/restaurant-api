@@ -58,7 +58,7 @@ exports.searchMenu = (request, reply) => {
 exports.addToMenu = (request, reply) => {
   // do some stuff
   let { category, item } = request.body
-  fbRef.child(category).push(item)
+  fbRef.child(category.toString()).push(item)
     .then(() => {
       reply.status(200).send('Menu item added. ')
     }).catch(err => {
